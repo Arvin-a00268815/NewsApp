@@ -36,7 +36,7 @@ class RepositoryTest {
         MockKAnnotations.init(this)
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler: Callable<Scheduler?>? -> Schedulers.trampoline() }
 
-        repository = Repository(newsService)
+        repository = DefaultRepository(newsService)
     }
 
     @Test
@@ -51,7 +51,7 @@ class RepositoryTest {
             newsService.getTopHeadlines()
         } returns  Single.just(response)
 
-        val resultsListener = mockk<Repository.ResultsListener>(relaxed = true)
+        val resultsListener = mockk<CallBackListener>(relaxed = true)
 
 
         //when

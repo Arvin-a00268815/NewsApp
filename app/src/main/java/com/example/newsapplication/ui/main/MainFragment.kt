@@ -1,7 +1,6 @@
 package com.example.newsapplication.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +11,7 @@ import com.example.newsapplication.R
 import com.example.newsapplication.dagger.DaggerAppComponent
 import com.example.newsapplication.dagger.RetrofitModule
 import com.example.newsapplication.model.News
+import com.example.newsapplication.repository.DefaultRepository
 import com.example.newsapplication.repository.Repository
 import com.example.newsapplication.viewmodel.MainViewModel
 import com.example.newsapplication.viewmodel.MainViewModelFactory

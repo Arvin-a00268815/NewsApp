@@ -3,7 +3,7 @@ package com.example.newsapplication.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.newsapplication.model.News
-import com.example.newsapplication.repository.Repository
+import com.example.newsapplication.repository.DefaultRepository
 import com.example.newsapplication.repository.network.Response
 import io.mockk.MockKAnnotations
 import io.mockk.every
@@ -12,7 +12,6 @@ import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import io.mockk.verify
 import io.reactivex.rxjava3.android.plugins.RxAndroidPlugins
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.junit.Before
@@ -34,7 +33,7 @@ class ViewModelTest {
     lateinit var viewModel: MainViewModel
 
     @MockK(relaxed = true)
-    lateinit var repository: Repository
+    lateinit var defaultRepository: DefaultRepository
 
 
 
@@ -43,7 +42,7 @@ class ViewModelTest {
     fun setup(){
         MockKAnnotations.init(this)
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler: Callable<Scheduler?>? -> Schedulers.trampoline() }
-        viewModel = MainViewModel(repository)
+        viewModel = MainViewModel(defaultRepository)
     }
 
     @Test
@@ -57,8 +56,8 @@ class ViewModelTest {
 
         viewModel.fetchTopHeadlines().observeForever(observer)
 
-        every { repository.getTopHeadlines(any()) } answers {
-            val resultsListener = it.invocation.args[0] as Repository.ResultsListener
+        every { defaultRepository.getTopHeadlines(any()) } answers {
+            val resultsListener = it.invocation.args[0] as DefaultRepository.ResultsListener
             val response = Response("ok", 0, list)
             resultsListener.onSuccess(response.articles)
         }

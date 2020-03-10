@@ -2,8 +2,8 @@ package com.example.newsapplication.repository
 
 import com.example.newsapplication.model.News
 
-interface Repository {
+interface CallBackListener {
 
-    fun getTopHeadlines(callBackListener: CallBackListener)
-
+    fun onSuccess(list: List<News>)
+    fun onError()
 }
