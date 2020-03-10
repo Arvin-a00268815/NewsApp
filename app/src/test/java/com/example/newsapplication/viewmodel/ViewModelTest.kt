@@ -3,6 +3,7 @@ package com.example.newsapplication.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.newsapplication.model.News
+import com.example.newsapplication.repository.CallBackListener
 import com.example.newsapplication.repository.DefaultRepository
 import com.example.newsapplication.repository.network.Response
 import io.mockk.MockKAnnotations
@@ -57,7 +58,7 @@ class ViewModelTest {
         viewModel.fetchTopHeadlines().observeForever(observer)
 
         every { defaultRepository.getTopHeadlines(any()) } answers {
-            val resultsListener = it.invocation.args[0] as DefaultRepository.ResultsListener
+            val resultsListener = it.invocation.args[0] as CallBackListener
             val response = Response("ok", 0, list)
             resultsListener.onSuccess(response.articles)
         }

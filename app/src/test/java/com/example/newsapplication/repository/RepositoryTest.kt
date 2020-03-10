@@ -26,7 +26,7 @@ class RepositoryTest {
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @InjectMockKs
-    lateinit var repository: Repository
+    lateinit var repository: DefaultRepository
 
     @MockK
     lateinit var newsService: NewsService
