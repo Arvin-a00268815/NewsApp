@@ -11,8 +11,7 @@ import com.example.newsapplication.R
 import com.example.newsapplication.dagger.DaggerAppComponent
 import com.example.newsapplication.dagger.RetrofitModule
 import com.example.newsapplication.model.News
-import com.example.newsapplication.repository.DefaultRepository
-import com.example.newsapplication.repository.Repository
+import com.example.newsapplication.repository.NewsRepository
 import com.example.newsapplication.viewmodel.MainViewModel
 import com.example.newsapplication.viewmodel.MainViewModelFactory
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -25,7 +24,7 @@ class MainFragment : Fragment() {
     }
 
     @Inject
-    lateinit var repository: Repository
+    lateinit var newsRepository: NewsRepository
 
     private lateinit var viewModel: MainViewModel
 
@@ -43,7 +42,7 @@ class MainFragment : Fragment() {
             .build()
         component.inject(this)
 
-        val factory = MainViewModelFactory(repository)
+        val factory = MainViewModelFactory(newsRepository)
         viewModel = ViewModelProvider(requireActivity(), factory).get(MainViewModel::class.java)
 
         viewModel.getTopHeadlinesLiveData().observe(viewLifecycleOwner,

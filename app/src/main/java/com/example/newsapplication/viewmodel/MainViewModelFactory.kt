@@ -2,12 +2,11 @@ package com.example.newsapplication.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.newsapplication.repository.DefaultRepository
-import com.example.newsapplication.repository.Repository
+import com.example.newsapplication.repository.NewsRepository
 
-class MainViewModelFactory(var repository: Repository) : ViewModelProvider.Factory {
+class MainViewModelFactory(var newsRepository: NewsRepository) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MainViewModel(repository) as T
+        return MainViewModel(newsRepository) as T
     }
 }

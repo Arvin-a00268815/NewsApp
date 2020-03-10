@@ -19,14 +19,14 @@ import org.junit.Rule
 import org.junit.Test
 import java.util.concurrent.Callable
 
-class RepositoryTest {
+class NewsRepositoryTest {
 
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    @InjectMockKs
-    lateinit var repository: DefaultRepository
+
+    lateinit var newsRepository: NewsRepository
 
     @MockK
     lateinit var newsService: NewsService
@@ -36,7 +36,7 @@ class RepositoryTest {
         MockKAnnotations.init(this)
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler: Callable<Scheduler?>? -> Schedulers.trampoline() }
 
-        repository = DefaultRepository(newsService)
+        newsRepository = Repository(newsService)
     }
 
     @Test
@@ -55,7 +55,7 @@ class RepositoryTest {
 
 
         //when
-        repository.getTopHeadlines(resultsListener)
+        newsRepository.getTopHeadlines(resultsListener)
 
         //then
         val list2 = ArrayList<News>()

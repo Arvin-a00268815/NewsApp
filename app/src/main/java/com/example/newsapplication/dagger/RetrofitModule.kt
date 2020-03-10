@@ -1,8 +1,7 @@
 package com.example.newsapplication.dagger
 
-import android.util.Log
-import com.example.newsapplication.repository.DefaultRepository
 import com.example.newsapplication.repository.Repository
+import com.example.newsapplication.repository.NewsRepository
 import com.example.newsapplication.repository.network.NewsService
 import com.google.gson.Gson
 import dagger.Module
@@ -52,7 +51,7 @@ class RetrofitModule(private var url : String) {
 
     @Provides
     @Singleton
-    fun provideDefaultRepository(newsService: NewsService) : Repository{
-        return DefaultRepository(newsService)
+    fun provideDefaultRepository(newsService: NewsService) : NewsRepository{
+        return Repository(newsService)
     }
 }
