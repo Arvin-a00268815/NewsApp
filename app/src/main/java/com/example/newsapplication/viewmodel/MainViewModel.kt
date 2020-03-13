@@ -1,16 +1,24 @@
 package com.example.newsapplication.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.newsapplication.model.News
 import com.example.newsapplication.repository.CallBackListener
 import com.example.newsapplication.repository.NewsRepository
+import retrofit2.HttpException
+
 
 class MainViewModel(private val newsRepository: NewsRepository) : ViewModel() {
 
 
     private val topHeadlinesLiveData = MutableLiveData<List<News>>()
+    private val emptyLiveData = MutableLiveData<String>()
+
+    fun observeEmptyLiveData() : LiveData<String>{
+        return emptyLiveData
+    }
 
     fun getTopHeadlinesLiveData() : LiveData<List<News>>{
         return topHeadlinesLiveData
@@ -26,8 +34,8 @@ class MainViewModel(private val newsRepository: NewsRepository) : ViewModel() {
                 topHeadlinesLiveData.postValue(articles)
             }
 
-            override fun onError() {
-
+            override fun onError(code: String, msg: String) {
+                emptyLiveData.postValue(msg)
             }
 
 

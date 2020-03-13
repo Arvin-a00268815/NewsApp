@@ -3,6 +3,7 @@ package com.example.newsapplication.dagger
 import com.example.newsapplication.repository.Repository
 import com.example.newsapplication.repository.NewsRepository
 import com.example.newsapplication.repository.network.NewsService
+import com.example.newsapplication.repository.network.TokenInterceptor
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -33,8 +34,16 @@ class RetrofitModule(private var url : String) {
     fun provideOkHttpClient() : OkHttpClient{
 
         val okHttpClient = OkHttpClient.Builder()
+        okHttpClient.addInterceptor(TokenInterceptor())
         return okHttpClient.build()
     }
+//
+//    @Provides
+//    @Singleton
+//    fun provideErrorHandlingInterceptor() : ErrorHandlingInterceptor{
+//
+//    }
+
 
     @Provides
     @Singleton

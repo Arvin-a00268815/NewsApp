@@ -8,7 +8,7 @@ import retrofit2.http.GET
 interface NewsService {
 
 
-    @GET("/v2/top-headlines?country=us&pageSize=5&apiKey=e720b17142c44c5892f5c428de7dec6d")
+    @GET("/v2/top-headlines?country=us&pageSize=5")
     fun getTopHeadlines() : Single<Response>
 
 
