@@ -2,6 +2,7 @@ package com.example.newsapplication.repository
 
 import android.util.Log
 import com.example.newsapplication.model.News
+import com.example.newsapplication.repository.network.ErrorResponseHandler
 import com.example.newsapplication.repository.network.NewsService
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.SingleObserver
@@ -17,25 +18,12 @@ class Repository (private var newsService: NewsService) : NewsRepository {
 
 
         newsService.getTopHeadlines()
-            .map{
-                 it
-            }.doOnError {
-
-                val response = (it as HttpException).response()!!
-
-                with(response){
-                    val jsonObject = JSONObject(errorBody()?.string())
-
-
-                    callBackListener.onError(jsonObject.getString("code"),
-                        jsonObject.getString("message"))
-                }
+            .doOnError {
+                ErrorResponseHandler.handle(it, callBackListener)
             }
             .map { it.articles }
              .subscribeOn(Schedulers.io())
              .observeOn(AndroidSchedulers.mainThread())
-
-
             .subscribe(object : SingleObserver<List<News>>{
                 override fun onSuccess(t: List<News>?) {
                     callBackListener.onSuccess(t!!)
