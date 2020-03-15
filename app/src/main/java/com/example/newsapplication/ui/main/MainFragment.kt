@@ -40,7 +40,8 @@ class MainFragment : Fragment() {
 
 
         val component = DaggerAppComponent
-            .builder().retrofitModule(RetrofitModule("https://newsapi.org"))
+            .builder()
+            .retrofitModule(RetrofitModule("https://newsapi.org"))
             .build()
         component.inject(this)
 
@@ -56,6 +57,8 @@ class MainFragment : Fragment() {
             Observer { list ->
                 //Log.e("size","="+it.size)
                 message.text = list.size.toString()
+
+                Toast.makeText(context, "size=="+list.size.toString(), Toast.LENGTH_LONG).show()
             })
         message.setOnClickListener {
 

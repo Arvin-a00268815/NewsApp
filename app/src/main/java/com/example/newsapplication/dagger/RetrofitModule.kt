@@ -4,12 +4,14 @@ import com.example.newsapplication.repository.Repository
 import com.example.newsapplication.repository.NewsRepository
 import com.example.newsapplication.repository.network.NewsService
 import com.example.newsapplication.repository.network.TokenInterceptor
+import com.example.newsapplication.repository.room.AppDatabase
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
@@ -23,7 +25,7 @@ class RetrofitModule(private var url : String) {
     fun provideRetrofitInstance(gson: Gson, okHttpClient: OkHttpClient) : Retrofit{
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(okHttpClient)
             .baseUrl(url)
         return retrofit.build()
@@ -60,7 +62,7 @@ class RetrofitModule(private var url : String) {
 
     @Provides
     @Singleton
-    fun provideDefaultRepository(newsService: NewsService) : NewsRepository{
-        return Repository(newsService)
+    fun provideDefaultRepository(newsService: NewsService, appDatabase: AppDatabase) : NewsRepository{
+        return Repository(newsService, appDatabase)
     }
 }

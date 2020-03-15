@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 import com.example.newsapplication.model.News
 import com.example.newsapplication.repository.CallBackListener
 import com.example.newsapplication.repository.NewsRepository
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import retrofit2.HttpException
 
 
@@ -29,9 +29,6 @@ class MainViewModel(private val newsRepository: NewsRepository) : ViewModel() {
     }
 
     fun fetchTopHeadlines() : LiveData<List<News>>{
-        if(topHeadlinesLiveData.value != null){
-            return topHeadlinesLiveData
-        }
         newsRepository.getTopHeadlines(object : CallBackListener{
 
             override fun onSuccess(articles: List<News>) {
@@ -42,7 +39,7 @@ class MainViewModel(private val newsRepository: NewsRepository) : ViewModel() {
                 emptyLiveData.postValue(msg)
             }
 
-            override fun collect(disposable: Disposable?) {
+            override fun collect(disposable: Disposable) {
                 compositeDisposable.add(disposable)
             }
 
