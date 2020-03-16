@@ -8,8 +8,8 @@ import java.io.Serializable
 @Entity
 data class News(
 
-    @PrimaryKey
-    val id : Int,
+    @PrimaryKey(autoGenerate = true)
+    var id : Int,
 
     @SerializedName("author")
     val author : String,

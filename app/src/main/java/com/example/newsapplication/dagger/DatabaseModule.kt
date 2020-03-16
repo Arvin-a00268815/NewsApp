@@ -22,6 +22,7 @@ class DatabaseModule {
     @Provides
     fun provideDatabaseInstance(context: Context) : AppDatabase {
         return Room.databaseBuilder(context, AppDatabase::class.java, "news-db")
+            .fallbackToDestructiveMigration()
             .build()
     }
 }
