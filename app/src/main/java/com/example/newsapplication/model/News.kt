@@ -12,7 +12,7 @@ data class News(
     var id : Int,
 
     @SerializedName("author")
-    val author : String,
+    val author : String?,
     @SerializedName("title")
     val title : String,
     @SerializedName("description")

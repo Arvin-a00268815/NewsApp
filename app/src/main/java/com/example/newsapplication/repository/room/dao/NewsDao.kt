@@ -11,7 +11,7 @@ import io.reactivex.Single
 @Dao
 interface NewsDao {
 
-    @Query("select * from news")
+    @Query("select * from news order by id desc")
     fun getAll() : Single<List<News>>
 
     @Insert

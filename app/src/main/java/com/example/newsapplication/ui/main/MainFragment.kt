@@ -55,7 +55,6 @@ class MainFragment : Fragment() {
         })
         viewModel.getTopHeadlinesLiveData().observe(viewLifecycleOwner,
             Observer { list ->
-                //Log.e("size","="+it.size)
                 message.text = list.size.toString()
 
                 Toast.makeText(context, "size=="+list.size.toString(), Toast.LENGTH_LONG).show()
@@ -63,6 +62,7 @@ class MainFragment : Fragment() {
         message.setOnClickListener {
 
             viewModel.fetchTopHeadlines()
+
         }
 
 
