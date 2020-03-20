@@ -4,11 +4,10 @@ import com.example.newsapplication.repository.Repository
 import com.example.newsapplication.repository.NewsRepository
 import com.example.newsapplication.repository.network.NewsService
 import com.example.newsapplication.repository.network.TokenInterceptor
-import com.example.newsapplication.repository.room.AppDatabase
+import com.example.newsapplication.room.AppDatabase
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
-import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

@@ -3,8 +3,7 @@ package com.example.newsapplication.dagger
 import android.content.Context
 import androidx.room.Room
 import com.example.newsapplication.MainActivity
-import com.example.newsapplication.repository.room.AppDatabase
-import com.example.newsapplication.ui.main.MainFragment
+import com.example.newsapplication.room.AppDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

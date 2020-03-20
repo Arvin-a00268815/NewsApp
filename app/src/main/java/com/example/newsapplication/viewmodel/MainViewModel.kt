@@ -58,7 +58,7 @@ class MainViewModel(private val newsRepository: NewsRepository) : ViewModel() {
                 }
 
                 override fun onNext(t: List<News>) {
-                    Log.e("t", "-"+t.size)
+//                    Log.e("t", "-"+t.size)
 
                     topHeadlinesLiveData.postValue(t)
                 }

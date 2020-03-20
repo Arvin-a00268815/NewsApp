@@ -1,4 +1,4 @@
-package com.example.newsapplication.repository.room.dao
+package com.example.newsapplication.room.dao
 
 import androidx.room.Dao
 import androidx.room.Delete

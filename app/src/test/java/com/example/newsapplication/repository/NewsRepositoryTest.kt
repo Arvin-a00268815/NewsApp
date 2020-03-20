@@ -4,23 +4,15 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.newsapplication.model.News
 import com.example.newsapplication.repository.network.NewsService
 import com.example.newsapplication.repository.network.Response
-import com.example.newsapplication.repository.room.AppDatabase
+import com.example.newsapplication.room.AppDatabase
 import io.mockk.MockKAnnotations
 import io.mockk.every
-import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
-import io.mockk.mockk
-import io.mockk.verify
 import io.reactivex.Completable
-import io.reactivex.Observable
-import io.reactivex.Scheduler
 import io.reactivex.Single
-import io.reactivex.android.plugins.RxAndroidPlugins
-import io.reactivex.schedulers.Schedulers
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.util.concurrent.Callable
 
 class NewsRepositoryTest {
 
