@@ -34,7 +34,7 @@ class MainViewModel(private val newsRepository: NewsRepository) : ViewModel() {
         return topHeadlinesLiveData
     }
 
-    fun fetchTopHeadlines() : LiveData<List<News>>{
+    fun fetchTopHeadlines(){
 
         val apiObservable = newsRepository.getTopHeadlinesFromApi()
             .doAfterNext {
@@ -75,7 +75,6 @@ class MainViewModel(private val newsRepository: NewsRepository) : ViewModel() {
 
             })
         compositeDisposable.add(disposable)
-        return topHeadlinesLiveData
 
     }
 
