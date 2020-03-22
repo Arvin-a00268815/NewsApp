@@ -43,6 +43,9 @@ class MainViewModel(private val newsRepository: NewsRepository) : ViewModel() {
             .doAfterNext {
                 compositeDisposable.add(newsRepository.saveNews(it)
                     .subscribeOn(Schedulers.io())
+                    .onErrorComplete {
+                        true
+                    }
                     .subscribe())
             }
 

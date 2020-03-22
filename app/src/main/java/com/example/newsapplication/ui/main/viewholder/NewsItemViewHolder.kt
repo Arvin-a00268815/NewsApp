@@ -1,6 +1,7 @@
 package com.example.newsapplication.ui.main.viewholder
 
 import android.view.View
+import com.bumptech.glide.Glide
 import com.example.newsapplication.model.News
 import kotlinx.android.synthetic.main.news_article_item.view.*
 
@@ -17,7 +18,12 @@ class NewsItemViewHolder(view: View) : ItemViewHolder(view){
         timeTextView.text = news.publishedAt
 
 
-
+        Glide
+            .with(itemView.image.context)
+            .load(news.urlToImage)
+            .override(200, 200) //1
+            .centerCrop()
+            .into(itemView.image);
     }
 
 }
