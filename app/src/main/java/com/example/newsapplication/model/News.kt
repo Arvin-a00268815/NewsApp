@@ -7,12 +7,14 @@ import androidx.room.TypeConverters
 import com.example.newsapplication.room.DateTimeTypeConverter
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
+import java.util.*
 
 @Entity
+@TypeConverters(DateTimeTypeConverter::class)
 data class News(
 
-    @PrimaryKey(autoGenerate = true)
-    var id : Int,
+//    @PrimaryKey(autoGenerate = true)
+//    var id : Int,
 
     @SerializedName("author")
     val author : String?,
@@ -24,9 +26,9 @@ data class News(
     val url : String,
     @SerializedName("urlToImage")
     val urlToImage : String,
-    @TypeConverters(DateTimeTypeConverter::class)
+    @PrimaryKey
     @SerializedName("publishedAt")
-    val publishedAt : String,
+    val publishedAt : Date,
     @SerializedName("content")
     val content : String?
 ) : Serializable

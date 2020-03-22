@@ -15,7 +15,7 @@ class NewsItemViewHolder(view: View) : ItemViewHolder(view){
 
         newsTitleTextView.text = news.title
         newsInfoTextView.text = news.desc
-        timeTextView.text = news.publishedAt
+        timeTextView.text = news.publishedAt.toString()
 
 
         Glide

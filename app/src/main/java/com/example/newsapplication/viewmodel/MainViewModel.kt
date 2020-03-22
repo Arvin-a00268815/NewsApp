@@ -1,10 +1,7 @@
 package com.example.newsapplication.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.example.newsapplication.model.News
 import com.example.newsapplication.repository.CallBackListener
 import com.example.newsapplication.repository.NewsRepository
