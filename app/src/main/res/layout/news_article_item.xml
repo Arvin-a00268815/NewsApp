@@ -4,18 +4,59 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/news_info_textView"
+
+    <ImageView
+        android:id="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/ic_launcher_background"/>
+    <TextView
+        android:id="@+id/news_title_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintLeft_toRightOf="@id/image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:fontFamily="sans-serif-medium"
         android:textSize="14sp"
         android:paddingTop="20dp"
-        android:paddingBottom="20dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:textColor="@android:color/black"
-        android:text="Hello"/>
+        android:text="title"/>
+
+    <TextView
+        android:id="@+id/news_info_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/image"
+        app:layout_constraintTop_toBottomOf="@id/news_title_textView"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="14sp"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@android:color/black"
+        android:text="content"/>
+
+    <TextView
+        android:id="@+id/news_time_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/news_info_textView"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="12sp"
+        android:paddingTop="5dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="time"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
