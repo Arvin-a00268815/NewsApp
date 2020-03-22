@@ -61,9 +61,13 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity(), factory).get(MainViewModel::class.java)
 
 
-        viewModel.observeEmptyLiveData().observe(viewLifecycleOwner, Observer{ msg ->
-            Log.e("called", "--"+msg)
-            Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
+        viewModel.observeIsLoadingLiveData().observe(viewLifecycleOwner, Observer{ isLoading ->
+
+            if(isLoading){
+                progressBar.visibility = View.VISIBLE
+            }else{
+                progressBar.visibility = View.GONE
+            }
         })
         viewModel.getTopHeadlinesLiveData().observe(viewLifecycleOwner,
             Observer { list ->

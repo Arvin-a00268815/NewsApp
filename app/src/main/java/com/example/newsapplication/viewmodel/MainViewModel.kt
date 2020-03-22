@@ -22,12 +22,12 @@ class MainViewModel(private val newsRepository: NewsRepository) : ViewModel() {
 
 
     private val topHeadlinesLiveData = MutableLiveData<List<News>>()
-    private val emptyLiveData = MutableLiveData<String>()
+    private val isLoadingLiveData = MutableLiveData<Boolean>()
 
     private val compositeDisposable = CompositeDisposable()
 
-    fun observeEmptyLiveData() : LiveData<String>{
-        return emptyLiveData
+    fun observeIsLoadingLiveData() : LiveData<Boolean>{
+        return isLoadingLiveData
     }
 
     fun getTopHeadlinesLiveData() : LiveData<List<News>>{
@@ -51,10 +51,14 @@ class MainViewModel(private val newsRepository: NewsRepository) : ViewModel() {
             apiObservable)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe {
+                isLoadingLiveData.postValue(true)
+            }
             .subscribeWith(object : DisposableObserver<List<News>>(){
                 override fun onComplete() {
 
                     Log.e("c", "-")
+                    isLoadingLiveData.postValue(false)
                 }
 
                 override fun onNext(t: List<News>) {
@@ -66,6 +70,7 @@ class MainViewModel(private val newsRepository: NewsRepository) : ViewModel() {
                 override fun onError(t: Throwable) {
 
                     Log.e("e", "-"+t)
+                    isLoadingLiveData.postValue(false)
                 }
 
             })
